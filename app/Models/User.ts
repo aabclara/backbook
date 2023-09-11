@@ -18,12 +18,15 @@ export default class User extends BaseModel {
   @column()
   public rememberMeToken: string | null
 
+  @column()
+  public token: any
+
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
-
+  
   @beforeSave()
   public static async hashPassword (user: User) {
     if (user.$dirty.password) {
